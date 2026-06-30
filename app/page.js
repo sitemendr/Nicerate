@@ -6,22 +6,21 @@ import ProductCard from '@/components/ProductCard'
 export const revalidate = 60
 
 const BRANDS = [
-  { name: 'Samsung', logo: '', color: '#1428A0' },
-  { name: 'Tecno', logo: 'https://logo-teka.com/wp-content/uploads/2025/11/tecno-logo.svg', color: '#0066CC' },
-  { name: 'Oraimo', logo: '', color: '#00A651' },
-  { name: 'HP', logo: '', color: '#0096D6' },
+  { name: 'Samsung', logo: 'https://cdn.worldvectorlogo.com/logos/samsung-7.svg', color: '#1428A0' },
+  { name: 'Tecno', logo: 'https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/tecno-mobile-logo-icon.png', color: '#0066CC' },
+  { name: 'HP', logo: 'https://cdn.worldvectorlogo.com/logos/hp-hewlett-packard.svg', color: '#0096D6' },
   { name: 'Lenovo', logo: 'https://cdn.worldvectorlogo.com/logos/lenovo-1.svg', color: '#E2231A' },
   { name: 'Dell', logo: 'https://cdn.worldvectorlogo.com/logos/dell-technologies-1.svg', color: '#007DB8' },
   { name: 'Nokia', logo: 'https://cdn.worldvectorlogo.com/logos/nokia-3.svg', color: '#124191' },
-  { name: 'Oppo', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/OPPO_LOGO_2019.svg/1280px-OPPO_LOGO_2019.svg.png', color: '#1D6FA4' },
-  { name: 'Huawei', logo: '', color: '#CF0A2C' },
-  { name: 'Apple', logo: '', color: '#555555' },
-  { name: 'Itel', logo: '', color: '#E4002B' },
-  { name: 'Tenda', logo: '', color: '#E8000D' },
+  { name: 'Oppo', logo: 'https://cdn.worldvectorlogo.com/logos/oppo-2022-1.svg', color: '#1D6FA4' },
+  { name: 'Huawei', logo: 'https://cdn.worldvectorlogo.com/logos/huawei.svg', color: '#CF0A2C' },
+  { name: 'Apple', logo: 'https://cdn.worldvectorlogo.com/logos/apple-11.svg', color: '#555555' },
+  { name: 'Tenda', logo: 'https://cdn.worldvectorlogo.com/logos/tenda-2.svg', color: '#E8000D' },
   { name: 'TP-Link', logo: 'https://cdn.worldvectorlogo.com/logos/tp-link.svg', color: '#4AB648' },
-  { name: 'Amaya', logo: '', color: '#9B59B6' },
+  { name: 'Oraimo', logo: null, color: '#00A651' },
+  { name: 'Itel', logo: null, color: '#E4002B' },
+  { name: 'Amaya', logo: null, color: '#9B59B6' },
 ]
-
 
 async function getHomeData() {
   try {
@@ -34,7 +33,7 @@ async function getHomeData() {
 
 export default async function HomePage() {
   const { featured } = await getHomeData()
-  const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER
+  const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '254700000000'
 
   const categories = [
     { icon: <Smartphone size={28} />, label: 'Phones', href: '/products?category=Phones' },
@@ -50,7 +49,7 @@ export default async function HomePage() {
     { icon: <MessageCircle size={20} />, title: 'Easy Ordering', desc: 'Order instantly via WhatsApp or Email.' },
   ]
 
-  const marqueeItems = BRANDS;
+  const marqueeItems = [...BRANDS, ...BRANDS, ...BRANDS]
 
   return (
     <>
@@ -99,30 +98,31 @@ export default async function HomePage() {
         </div>
 
         {/* Brands marquee */}
-        <div style={{ position: 'relative', zIndex: 2, borderTop: '1px solid #ffffff12', background: 'rgba(0,0,0,0.65)', backdropFilter: 'blur(10px)', padding: '1.1rem 0', overflow: 'hidden' }}>
+        <div style={{ position: 'relative', zIndex: 2, borderTop: '1px solid #ffffff12', background: 'rgba(0,0,0,0.65)', backdropFilter: 'blur(10px)', padding: '1.25rem 0', overflow: 'hidden' }}>
           <div className="marquee-track">
-{[...marqueeItems, ...marqueeItems].map((brand, i) => (
-  <span key={i} className="marquee-item">
-    {brand.logo ? (
-      <img
-        src={brand.logo}
-        alt={brand.name}
-        style={{
-          height: '22px',
-          width: 'auto',
-          objectFit: 'contain',
-          filter: 'brightness(0) invert(1)',
-          opacity: 0.85,
-        }}
-      />
-    ) : (
-      <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 700, fontSize: '0.85rem', color: brand.color, letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-        {brand.name}
-      </span>
-    )}
-    <span className="brand-dot">✦</span>
-  </span>
-))}
+            {marqueeItems.map((brand, i) => (
+              <span key={i} className="marquee-item">
+                {brand.logo ? (
+                  <img
+                    src={brand.logo}
+                    alt={brand.name}
+                    style={{ height: '20px', width: 'auto', objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.8 }}
+                  />
+                ) : (
+                  <span style={{
+                    fontFamily: 'Space Grotesk, sans-serif',
+                    fontWeight: 800,
+                    fontSize: '0.85rem',
+                    color: brand.color,
+                    letterSpacing: '0.15em',
+                    textTransform: 'uppercase',
+                  }}>
+                    {brand.name}
+                  </span>
+                )}
+                <span className="brand-dot">✦</span>
+              </span>
+            ))}
           </div>
         </div>
       </section>

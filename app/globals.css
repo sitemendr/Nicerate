@@ -38,27 +38,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #0a0a0a;
-}
-::-webkit-scrollbar-thumb {
-  background: var(--green-primary);
-  border-radius: 3px;
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: var(--green-primary); border-radius: 3px; }
 
-/* Brands marquee */
+/* ─── Brands Marquee ─── */
 @keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
 }
 .marquee-track {
   display: flex;
-  gap: 0;
-  animation: marquee 30s linear infinite;
+  align-items: center;
+  animation: marquee 35s linear infinite;
   width: max-content;
+  will-change: transform;
 }
 .marquee-track:hover {
   animation-play-state: paused;
@@ -66,62 +60,16 @@ h1, h2, h3, h4, h5, h6 {
 .marquee-item {
   display: inline-flex;
   align-items: center;
-  gap: 1rem;
-  padding: 0 1.5rem;
-}
-.brand-highlight {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-  font-size: 0.85rem;
-  color: #006B35;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-.brand-dim {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 600;
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.3);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  gap: 1.5rem;
+  padding: 0 2rem;
+  white-space: nowrap;
 }
 .brand-dot {
-  color: rgba(0,107,53,0.4);
-  font-size: 0.6rem;
+  color: rgba(0, 107, 53, 0.35);
+  font-size: 0.55rem;
 }
 
-/* Footer links */
-.footer-link {
-  color: #a0a0a0;
-  font-size: 0.875rem;
-  transition: color 0.2s;
-}
-.footer-link:hover {
-  color: #006B35;
-}
-
-/* Contact cards */
-.contact-card {
-  background: #111;
-  border: 1px solid #1a1a1a;
-  transition: border-color 0.2s;
-  display: block;
-}
-.contact-card:hover {
-  border-color: #006B35;
-}
-
-/* Category cards */
-.category-card {
-  background: #111;
-  border: 1px solid #1a1a1a;
-  transition: border-color 0.2s;
-}
-.category-card:hover {
-  border-color: #006B35;
-}
-
-/* Green underline animation */
+/* ─── Navbar ─── */
 .nav-link {
   position: relative;
   color: #a0a0a0;
@@ -144,16 +92,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
 }
 
-/* Card hover */
-.product-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(0, 107, 53, 0.2);
-}
-
-/* Green glow button */
+/* ─── Buttons ─── */
 .btn-primary {
   background: var(--green-primary);
   color: white;
@@ -164,7 +103,6 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 4px 20px rgba(0, 107, 53, 0.4);
 }
 
-/* Outline button */
 .btn-outline {
   border: 1px solid var(--green-primary);
   color: var(--green-primary);
@@ -175,3 +113,40 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
 }
 
+/* ─── Cards ─── */
+.product-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 107, 53, 0.2);
+}
+
+.category-card {
+  background: #111;
+  border: 1px solid #1a1a1a;
+  transition: border-color 0.2s;
+}
+.category-card:hover {
+  border-color: #006B35;
+}
+
+.contact-card {
+  background: #111;
+  border: 1px solid #1a1a1a;
+  transition: border-color 0.2s;
+  display: block;
+}
+.contact-card:hover {
+  border-color: #006B35;
+}
+
+/* ─── Footer ─── */
+.footer-link {
+  color: #a0a0a0;
+  font-size: 0.875rem;
+  transition: color 0.2s;
+}
+.footer-link:hover {
+  color: #006B35;
+}
